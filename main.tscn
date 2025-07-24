@@ -1,17 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://dibr4o2dlqoyq"]
+[gd_scene load_steps=5 format=3 uid="uid://dibr4o2dlqoyq"]
 
+[ext_resource type="PackedScene" uid="uid://6150lv7xluax" path="res://background/scrolling_bg.tscn" id="1_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://c05dep5ngavhd" path="res://player/player.tscn" id="2_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://vs528bv076a" path="res://map/main_world.tscn" id="3_1bvp3"]
-[ext_resource type="Script" uid="uid://bua5qh6rq13bu" path="res://follow_cam.gd" id="3_h2yge"]
+[ext_resource type="PackedScene" uid="uid://bp6f2idv8th0f" path="res://camera/follow_cam.tscn" id="3_lquwl"]
 
 [node name="Main" type="Node"]
 
-[node name="Alec" parent="." instance=ExtResource("2_0xm2m")]
-position = Vector2(601, 224)
+[node name="ScrollingBg" parent="." instance=ExtResource("1_1bvp3")]
+position = Vector2(0, 288)
 
-[node name="FollowCam" type="Camera2D" parent="." node_paths=PackedStringArray("target")]
+[node name="Alec" parent="." instance=ExtResource("2_0xm2m")]
+position = Vector2(607, 204)
+
+[node name="FollowCam" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_lquwl")]
 position = Vector2(1, 288)
-script = ExtResource("3_h2yge")
 target = NodePath("../Alec")
 
 [node name="AlecTileWorldTileMap" parent="." instance=ExtResource("3_1bvp3")]

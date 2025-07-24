@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://6150lv7xluax"]
+
+[ext_resource type="Texture2D" uid="uid://dsxkfoka3goer" path="res://assets/images/cloudybg.png" id="1_t0gnq"]
+[ext_resource type="Texture2D" uid="uid://cgfbr2pi6mfqs" path="res://assets/images/mountain.png" id="2_qowot"]
+
+[node name="ScrollingBg" type="Node2D"]
+
+[node name="Clouds" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.5, 0.5)
+repeat_size = Vector2(2000, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Clouds"]
+position = Vector2(101, 0)
+texture = ExtResource("1_t0gnq")
+
+[node name="Mountains" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.7, 0.7)
+repeat_size = Vector2(2000, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Mountains"]
+position = Vector2(100, 91)
+texture = ExtResource("2_qowot")

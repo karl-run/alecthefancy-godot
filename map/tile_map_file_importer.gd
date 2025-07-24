@@ -14,7 +14,6 @@ func loadMap(path: String) -> void:
 			var character := line[char_index]
 			var position  := Vector2i(char_index, line_index)
 
-			print(character, ", ", character.unicode_at(0), " - ", "A".unicode_at(0), ":", "Z".unicode_at(0))
 			var charUnicode := character.unicode_at(0)
 			if ((charUnicode) >= "A".unicode_at(0) and (charUnicode) <= "Z".unicode_at(0)):
 				set_cell(position, 0, char_to_tile_coords(character))
@@ -24,7 +23,6 @@ func char_to_tile_coords(ch: String) -> Vector2i:
 	var x: int =  index % 9
 	var y: int =  index / 9
 
-	print(ch, "(", ch.unicode_at(0) - 65, ") ", " became ", x, ":", y)
 	return Vector2i(x, y)
 
 
