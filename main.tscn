@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://dibr4o2dlqoyq"]
+
+[ext_resource type="PackedScene" uid="uid://b47kygadhuknx" path="res://world_tilemap.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://c05dep5ngavhd" path="res://player/player.tscn" id="2_0xm2m"]
+[ext_resource type="Script" uid="uid://bua5qh6rq13bu" path="res://follow_cam.gd" id="3_h2yge"]
+
+[node name="Main" type="Node"]
+
+[node name="TheMap" parent="." instance=ExtResource("1_ig7tw")]
+
+[node name="Alec" parent="." instance=ExtResource("2_0xm2m")]
+position = Vector2(591, 261)
+
+[node name="FollowCam" type="Camera2D" parent="." node_paths=PackedStringArray("target")]
+position = Vector2(1, 288)
+script = ExtResource("3_h2yge")
+target = NodePath("../Alec")
