@@ -1,4 +1,5 @@
 extends TileMapLayer
+class_name TileMapFileImporter
 
 func _ready():
 	loadMap("res://assets/maps/main.map")

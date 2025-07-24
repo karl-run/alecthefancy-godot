@@ -1,11 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://b47kygadhuknx"]
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://b81bulycrgaii"]
 
-[ext_resource type="Texture2D" uid="uid://cdxhgts4ssj6f" path="res://assets/images/tiles.png" id="1_mblhf"]
-[ext_resource type="Script" uid="uid://f57nn2mtyx3r" path="res://tile_map_file_importer.gd" id="2_xncqt"]
+[ext_resource type="Texture2D" uid="uid://cdxhgts4ssj6f" path="res://assets/images/tiles.png" id="1_k4bfc"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xncqt"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lhspq"]
 resource_name = "world grass tiles"
-texture = ExtResource("1_mblhf")
+texture = ExtResource("1_k4bfc")
 margins = Vector2i(1, 1)
 separation = Vector2i(2, 2)
 texture_region_size = Vector2i(32, 32)
@@ -64,17 +63,8 @@ texture_region_size = Vector2i(32, 32)
 8:0/0 = 0
 8:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 
-[sub_resource type="TileSet" id="TileSet_8md74"]
+[resource]
 tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 1
 physics_layer_0/collision_mask = 0
-sources/0 = SubResource("TileSetAtlasSource_xncqt")
-
-[node name="AutoLoadGameMap" type="Node2D"]
-
-[node name="TileMapLayer" type="TileMapLayer" parent="."]
-texture_filter = 1
-texture_repeat = 1
-position = Vector2(1, 0)
-tile_set = SubResource("TileSet_8md74")
-script = ExtResource("2_xncqt")
+sources/0 = SubResource("TileSetAtlasSource_lhspq")
