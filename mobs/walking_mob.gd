@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends KillableMob
 
 @export var run_speed: int = 99
 @export var gravity: int = 2500
@@ -28,8 +28,3 @@ func _physics_process(delta: float) -> void:
 		velocity.x -= run_speed
 
 	move_and_slide()
-
-
-func kill() -> void:
-	$Animations.play("death")
-	$Animations.animation_finished.connect(func (): queue_free() )

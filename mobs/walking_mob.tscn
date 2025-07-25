@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cg7s8rm28fhyw"]
+[gd_scene load_steps=17 format=3 uid="uid://cg7s8rm28fhyw"]
 
 [ext_resource type="Texture2D" uid="uid://5rn4erpl7mmw" path="res://assets/images/creatures.png" id="1_ubogi"]
 [ext_resource type="Script" uid="uid://c41iscujn7ejc" path="res://mobs/walking_mob.gd" id="1_vss60"]
@@ -92,6 +92,9 @@ size = Vector2(32, 58)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vss60"]
 size = Vector2(34, 7)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vwape"]
+size = Vector2(28, 56)
+
 [node name="WalkingMob" type="CharacterBody2D"]
 collision_layer = 4
 script = ExtResource("1_vss60")
@@ -111,3 +114,9 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KillArea"]
 position = Vector2(0, -28.5)
 shape = SubResource("RectangleShape2D_vss60")
+
+[node name="DeathArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathArea"]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_vwape")

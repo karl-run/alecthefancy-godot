@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://mg10sl1kelte"]
+[gd_scene load_steps=16 format=3 uid="uid://mg10sl1kelte"]
 
 [ext_resource type="Script" uid="uid://cl1opbjqsykea" path="res://mobs/flying_mob.gd" id="1_tx45a"]
 [ext_resource type="Texture2D" uid="uid://5rn4erpl7mmw" path="res://assets/images/creatures.png" id="1_yfklb"]
@@ -51,7 +51,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ijq0y")
 }],
-"loop": true,
+"loop": false,
 "name": &"death",
 "speed": 12.0
 }, {
@@ -82,13 +82,33 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3xcbk"]
 size = Vector2(52, 32)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aaymf"]
+size = Vector2(52, 5.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tx45a"]
+size = Vector2(52, 28)
+
 [node name="FlyingMob" type="CharacterBody2D" groups=["mobs"]]
 collision_layer = 4
 script = ExtResource("1_tx45a")
 
 [node name="Animations" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_vpj06")
-frame_progress = 0.333735
+autoplay = "default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_3xcbk")
+
+[node name="KillArea" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KillArea"]
+position = Vector2(0, -13.75)
+shape = SubResource("RectangleShape2D_aaymf")
+
+[node name="DeathArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathArea"]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_tx45a")

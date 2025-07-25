@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://by1qw35nkbm70"]
+[gd_scene load_steps=16 format=3 uid="uid://by1qw35nkbm70"]
 
 [ext_resource type="Script" uid="uid://dk8mlb27ujvu7" path="res://mobs/jumping_mob.gd" id="1_21f3t"]
 [ext_resource type="Texture2D" uid="uid://5rn4erpl7mmw" path="res://assets/images/creatures.png" id="1_hl4ck"]
@@ -89,6 +89,9 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_iey5h"]
 radius = 17.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_21f3t"]
+size = Vector2(32, 24)
+
 [node name="JumpingMob" type="CharacterBody2D"]
 collision_layer = 4
 script = ExtResource("1_21f3t")
@@ -98,3 +101,9 @@ sprite_frames = SubResource("SpriteFrames_n8rrt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_iey5h")
+
+[node name="DeathArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathArea"]
+position = Vector2(0, -3)
+shape = SubResource("RectangleShape2D_21f3t")

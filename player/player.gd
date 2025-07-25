@@ -1,8 +1,11 @@
 extends CharacterBody2D
 
-var run_speed: int  = 350
-var jump_speed: int = -1000
-var gravity: int    = 2500
+signal player_died
+@export var run_speed: int = 350
+@export var jump_speed: int = -1000
+@export var gravity: int = 2500
+
+var is_alive: bool = true
 
 
 func get_input():
@@ -20,11 +23,22 @@ func get_input():
 		velocity.x -= run_speed
 
 
-func _physics_process(delta):
+func _physics_process(delta) -> void:
+	if not is_alive:
+		return
+
 	velocity.y += gravity * delta
 	get_input()
 	move_and_slide()
 	do_animations()
+
+
+func die():
+	is_alive = false
+
+	$Animations.play("death")
+
+	player_died.emit()
 
 
 func do_animations() -> void:
@@ -41,10 +55,13 @@ func do_animations() -> void:
 
 
 func _on_body_area_body_entered(body: Node2D) -> void:
-	print("Uh oh player hit by ", body.name)
-	pass
+	if body is KillableMob and not body.alive:
+		return
+
+	die()
+
 
 func _on_jump_area_entered(area: Area2D) -> void:
 	if area.name == "KillArea":
 		area.get_parent().kill()
-		print("Jump area shape entered in area: ", area.name)
+		velocity.y = jump_speed

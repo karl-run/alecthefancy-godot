@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends KillableMob
 
 @export var run_speed: int = 70
 
@@ -20,10 +20,13 @@ func _physics_process(delta: float) -> void:
 		left = false
 		$Animations.flip_h = false
 
-
 	if left:
 		velocity.x += run_speed
 	else:
 		velocity.x -= run_speed
 
 	move_and_slide()
+
+func kill() -> void:
+	super.kill()
+	$Animations.flip_h = !$Animations.flip_h
