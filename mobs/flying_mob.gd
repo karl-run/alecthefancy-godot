@@ -27,6 +27,7 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
+
 func kill() -> void:
 	super.kill()
 	$Animations.flip_h = !$Animations.flip_h

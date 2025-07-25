@@ -4,4 +4,4 @@ extends Camera2D
 
 
 func _process(delta: float) -> void:
-	global_position.x = target.global_position.x
+    global_position.x = target.global_position.x

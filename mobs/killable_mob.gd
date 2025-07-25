@@ -9,4 +9,3 @@ func kill() -> void:
 
     $Animations.play("death")
     $Animations.animation_finished.connect(func (): queue_free() )
-
