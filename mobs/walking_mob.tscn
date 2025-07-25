@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cg7s8rm28fhyw"]
+[gd_scene load_steps=16 format=3 uid="uid://cg7s8rm28fhyw"]
 
 [ext_resource type="Texture2D" uid="uid://5rn4erpl7mmw" path="res://assets/images/creatures.png" id="1_ubogi"]
 [ext_resource type="Script" uid="uid://c41iscujn7ejc" path="res://mobs/walking_mob.gd" id="1_vss60"]
@@ -61,9 +61,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_1bjdn")
 }],
-"loop": true,
+"loop": false,
 "name": &"death",
-"speed": 5.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -83,11 +83,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
-"speed": 5.0
+"speed": 12.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iigng"]
-size = Vector2(32, 62)
+size = Vector2(32, 58)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vss60"]
+size = Vector2(34, 7)
 
 [node name="WalkingMob" type="CharacterBody2D"]
 collision_layer = 4
@@ -95,8 +98,16 @@ script = ExtResource("1_vss60")
 
 [node name="Animations" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_7x0pu")
-frame_progress = 0.580887
+autoplay = "default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 2)
+position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_iigng")
+
+[node name="KillArea" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KillArea"]
+position = Vector2(0, -28.5)
+shape = SubResource("RectangleShape2D_vss60")

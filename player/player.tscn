@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://c05dep5ngavhd"]
+[gd_scene load_steps=35 format=3 uid="uid://c05dep5ngavhd"]
 
 [ext_resource type="Texture2D" uid="uid://djhr26dqy0ail" path="res://assets/images/player.png" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://85pkxm8jo65o" path="res://player/player.gd" id="1_rkbax"]
@@ -226,6 +226,12 @@ animations = [{
 radius = 12.0
 height = 50.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rkbax"]
+size = Vector2(24, 5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g1dw6"]
+size = Vector2(22, 40)
+
 [node name="Alec" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_rkbax")
@@ -233,9 +239,30 @@ script = ExtResource("1_rkbax")
 [node name="Animations" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 texture_repeat = 1
-position = Vector2(-1, 0)
 sprite_frames = SubResource("SpriteFrames_j5n4i")
 animation = &"run"
+frame_progress = 0.494725
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_634y6")
+
+[node name="Jump Area" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 12
+priority = 1
+
+[node name="Jump Shape" type="CollisionShape2D" parent="Jump Area"]
+position = Vector2(0, 23.5)
+shape = SubResource("RectangleShape2D_rkbax")
+
+[node name="Body Area" type="Area2D" parent="."]
+position = Vector2(0, -1)
+collision_layer = 2
+collision_mask = 12
+
+[node name="Death Shape" type="CollisionShape2D" parent="Body Area"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_g1dw6")
+
+[connection signal="area_entered" from="Jump Area" to="." method="_on_jump_area_entered"]
+[connection signal="body_entered" from="Body Area" to="." method="_on_body_area_body_entered"]

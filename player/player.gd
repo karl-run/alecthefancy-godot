@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 var run_speed: int  = 350
-var jump_speed: int = -2000
+var jump_speed: int = -1000
 var gravity: int    = 2500
 
 
@@ -26,6 +26,7 @@ func _physics_process(delta):
 	move_and_slide()
 	do_animations()
 
+
 func do_animations() -> void:
 	if is_on_floor():
 		if velocity.x == 0:
@@ -37,3 +38,13 @@ func do_animations() -> void:
 	else:
 		if velocity.y < 0:
 			$Animations.play("jump")
+
+
+func _on_body_area_body_entered(body: Node2D) -> void:
+	print("Uh oh player hit by ", body.name)
+	pass
+
+func _on_jump_area_entered(area: Area2D) -> void:
+	if area.name == "KillArea":
+		area.get_parent().kill()
+		print("Jump area shape entered in area: ", area.name)

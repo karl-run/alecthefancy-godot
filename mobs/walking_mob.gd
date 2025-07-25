@@ -22,10 +22,14 @@ func _physics_process(delta: float) -> void:
 		left = false
 		$Animations.flip_h = true
 
-
 	if left:
 		velocity.x += run_speed
 	else:
 		velocity.x -= run_speed
 
 	move_and_slide()
+
+
+func kill() -> void:
+	$Animations.play("death")
+	$Animations.animation_finished.connect(func (): queue_free() )
