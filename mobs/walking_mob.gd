@@ -1,35 +1,31 @@
 extends CharacterBody2D
 
-@export var speed: float = 100.0
-@export var gravity: int = 100
+@export var run_speed: int = 99
+@export var gravity: int = 2500
 
 var left: bool = true
 
 
 func _ready() -> void:
 	$Animations.play("default")
-	$Animations.flip_h = true
+	$Animations.flip_h = false
 
 
 func _physics_process(delta: float) -> void:
-	var motion := Vector2(0, 0)
-	if (!is_on_floor()):
-		motion.y += gravity * delta
+	velocity.y += gravity * delta
+	velocity.x = 0
 
-	motion.x += (1.0 if left else -1.0) * speed * delta
-	move_and_collide(motion)
-	move_and_slide()
-
-
-func _on_body_entered(body: Node) -> void:
-	if (body is TileMapLayer):
-		flip_direction()
-
-
-func flip_direction() -> void:
-	if (left):
-		$Animations.flip_h = true
-		left = false
-	else:
-		$Animations.flip_h = false
+	if get_wall_normal() == Vector2.RIGHT:
 		left = true
+		$Animations.flip_h = false
+	elif get_wall_normal() == Vector2.LEFT:
+		left = false
+		$Animations.flip_h = true
+
+
+	if left:
+		velocity.x += run_speed
+	else:
+		velocity.x -= run_speed
+
+	move_and_slide()

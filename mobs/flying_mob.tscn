@@ -82,14 +82,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3xcbk"]
 size = Vector2(52, 32)
 
-[node name="FlyingMob" type="RigidBody2D" groups=["mobs"]]
+[node name="FlyingMob" type="CharacterBody2D" groups=["mobs"]]
 collision_layer = 4
-gravity_scale = 0.0
-lock_rotation = true
-contact_monitor = true
-max_contacts_reported = 1
 script = ExtResource("1_tx45a")
-direction = Vector2i(0, 0)
 
 [node name="Animations" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_vpj06")
@@ -97,5 +92,3 @@ frame_progress = 0.333735
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_3xcbk")
-
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]

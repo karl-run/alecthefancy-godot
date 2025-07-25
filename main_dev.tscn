@@ -11,7 +11,7 @@
 [node name="DevScene" type="Node"]
 
 [node name="ScrollingBg" parent="." instance=ExtResource("1_wp8nw")]
-position = Vector2(0, 288)
+position = Vector2(2, 288)
 
 [node name="Alec" parent="." instance=ExtResource("1_vnjtq")]
 position = Vector2(392, 275)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cg7s8rm28fhyw"]
+[gd_scene load_steps=15 format=3 uid="uid://cg7s8rm28fhyw"]
 
 [ext_resource type="Texture2D" uid="uid://5rn4erpl7mmw" path="res://assets/images/creatures.png" id="1_ubogi"]
 [ext_resource type="Script" uid="uid://c41iscujn7ejc" path="res://mobs/walking_mob.gd" id="1_vss60"]
@@ -89,9 +89,6 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iigng"]
 size = Vector2(32, 62)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vss60"]
-size = Vector2(35, 58)
-
 [node name="WalkingMob" type="CharacterBody2D"]
 collision_layer = 4
 script = ExtResource("1_vss60")
@@ -103,12 +100,3 @@ frame_progress = 0.580887
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_iigng")
-
-[node name="Area2D" type="Area2D" parent="."]
-collision_layer = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-0.5, 1)
-shape = SubResource("RectangleShape2D_vss60")
-
-[connection signal="body_entered" from="Area2D" to="." method="_on_body_entered"]

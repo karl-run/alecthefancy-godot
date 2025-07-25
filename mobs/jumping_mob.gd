@@ -16,6 +16,13 @@ func _physics_process(delta: float) -> void:
 	velocity.y += gravity * delta
 	velocity.x = 0
 
+	if get_wall_normal() == Vector2.RIGHT:
+		left = true
+		$Animations.flip_h = true
+	elif get_wall_normal() == Vector2.LEFT:
+		left = false
+		$Animations.flip_h = false
+
 	if is_on_floor():
 		velocity.y = jump_speed
 	if left:
