@@ -20,27 +20,27 @@ func load_map(path: String) -> void:
 		var line: String = lines[line_index]
 		for char_index in len(line):
 			var character := line[char_index]
-			var position  := Vector2i(char_index, line_index)
+			var pos       := Vector2i(char_index, line_index)
 
 			# Tiles are between "A" and "Z"
 			var charUnicode := character.unicode_at(0)
 			if ((charUnicode) >= "A".unicode_at(0) and (charUnicode) <= "Z".unicode_at(0)):
-				set_tile(character, position)
+				set_tile(character, pos)
 			else: # Clear any tiles already set in editor
-				tile_map.erase_cell(position)
+				tile_map.erase_cell(pos)
 
 			# Mobs are between "1" and "3"
 			match character:
 				# Mobs:
 				"1", "2", "3":
-					spawn_mob(character, position)
+					spawn_mob(character, pos)
 
 
-func set_tile(character: String, position: Vector2i) -> void:
-	tile_map.set_cell(position, 0, char_to_tile_coords(character))
+func set_tile(character: String, pos: Vector2i) -> void:
+	tile_map.set_cell(pos, 0, char_to_tile_coords(character))
 
 
-func spawn_mob(character: String, position: Vector2i) -> void:
+func spawn_mob(character: String, pos: Vector2i) -> void:
 	if (["1", "2", "3"].has(character) == false):
 		print("Invalid character for mob spawn: " + character)
 		return
@@ -49,14 +49,14 @@ func spawn_mob(character: String, position: Vector2i) -> void:
 	match character:
 		"1":
 			mob = walking_mob.instantiate()
-			mob.position = position * 32
+			mob.position = pos * 32
 			mob.position.y += 32
 		"2":
 			mob = flying_mob.instantiate()
-			mob.position = position * 32
+			mob.position = pos * 32
 		"3":
 			mob = jumping_mob.instantiate()
-			mob.position = position * 32
+			mob.position = pos * 32
 
 	add_child(mob)
 
