@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends KillableMob
 
 @export var run_speed: int = 99
 @export var jump_speed: int = -500
