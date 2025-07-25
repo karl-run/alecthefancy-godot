@@ -43,6 +43,10 @@ func load_map() -> void:
 func load_mobs() -> void:
     var lines := get_map_lines()
 
+    for child in get_children():
+        if child is KillableMob:
+            child.queue_free()
+
     for line_index in len(lines):
         var line: String = lines[line_index]
         for char_index in len(line):

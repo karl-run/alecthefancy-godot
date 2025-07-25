@@ -17,6 +17,9 @@ func get_input():
 
     if is_on_floor() and jump:
         velocity.y = jump_speed
+    if is_on_wall_only() and jump:
+        velocity.y = jump_speed
+        velocity.x = -get_wall_normal().x * (jump_speed * 2)
     if right:
         velocity.x += run_speed
     if left:
