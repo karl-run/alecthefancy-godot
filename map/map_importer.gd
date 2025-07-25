@@ -1,8 +1,12 @@
-extends TileMapLayer
-class_name TileMapFileImporter
+extends Node2D
+
+## The target tile map where the cells will be set
+@export var tile_map: TileMapLayer
+
 
 func _ready():
 	loadMap("res://assets/maps/main.map")
+
 
 func loadMap(path: String) -> void:
 	var data  := getMapData(path)
@@ -16,7 +20,8 @@ func loadMap(path: String) -> void:
 
 			var charUnicode := character.unicode_at(0)
 			if ((charUnicode) >= "A".unicode_at(0) and (charUnicode) <= "Z".unicode_at(0)):
-				set_cell(position, 0, char_to_tile_coords(character))
+				tile_map.set_cell(position, 0, char_to_tile_coords(character))
+
 
 func char_to_tile_coords(ch: String) -> Vector2i:
 	var index  := ch.unicode_at(0) - 65

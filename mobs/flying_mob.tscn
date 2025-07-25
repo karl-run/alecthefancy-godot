@@ -85,7 +85,7 @@ size = Vector2(52, 32)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_vpj06")
-frame_progress = 0.367322
+frame_progress = 0.300757
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_3xcbk")
