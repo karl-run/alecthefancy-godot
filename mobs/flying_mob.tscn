@@ -1,5 +1,6 @@
-[gd_scene load_steps=13 format=3 uid="uid://mg10sl1kelte"]
+[gd_scene load_steps=14 format=3 uid="uid://mg10sl1kelte"]
 
+[ext_resource type="Script" uid="uid://cl1opbjqsykea" path="res://mobs/flying_mob.gd" id="1_tx45a"]
 [ext_resource type="Texture2D" uid="uid://5rn4erpl7mmw" path="res://assets/images/creatures.png" id="1_yfklb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tx45a"]
@@ -81,13 +82,20 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3xcbk"]
 size = Vector2(52, 32)
 
-[node name="FlyingMob" type="RigidBody2D"]
+[node name="FlyingMob" type="RigidBody2D" groups=["mobs"]]
 collision_layer = 4
 gravity_scale = 0.0
+lock_rotation = true
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_tx45a")
+direction = Vector2i(0, 0)
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="Animations" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_vpj06")
-frame_progress = 0.87862
+frame_progress = 0.333735
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_3xcbk")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
