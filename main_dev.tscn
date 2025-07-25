@@ -22,9 +22,10 @@ tile_set = ExtResource("2_og48h")
 
 [node name="FlyingMob" parent="DevMap" instance=ExtResource("4_jc27u")]
 position = Vector2(379, 79)
+max_contacts_reported = 2
 
 [node name="WalkingMob" parent="DevMap" instance=ExtResource("5_ph7h3")]
-position = Vector2(717, 106)
+position = Vector2(721, 106)
 
 [node name="FollowCam" parent="." node_paths=PackedStringArray("target") instance=ExtResource("4_ckf8t")]
 position = Vector2(0, 288)

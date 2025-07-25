@@ -1,6 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://cg7s8rm28fhyw"]
+[gd_scene load_steps=16 format=3 uid="uid://cg7s8rm28fhyw"]
 
 [ext_resource type="Texture2D" uid="uid://5rn4erpl7mmw" path="res://assets/images/creatures.png" id="1_ubogi"]
+[ext_resource type="Script" uid="uid://c41iscujn7ejc" path="res://mobs/walking_mob.gd" id="1_vss60"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vss60"]
 atlas = ExtResource("1_ubogi")
@@ -86,16 +87,27 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iigng"]
-size = Vector2(32, 65)
+size = Vector2(32, 62)
 
-[node name="WalkingMob" type="RigidBody2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vss60"]
+size = Vector2(35, 58)
+
+[node name="WalkingMob" type="CharacterBody2D"]
 collision_layer = 4
-gravity_scale = 0.0
+script = ExtResource("1_vss60")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="Animations" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_7x0pu")
 frame_progress = 0.580887
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 0.5)
+position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_iigng")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-0.5, 1)
+shape = SubResource("RectangleShape2D_vss60")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_body_entered"]
