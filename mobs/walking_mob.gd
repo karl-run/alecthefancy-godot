@@ -3,7 +3,7 @@ extends CharacterBody2D
 @export var speed: float = 100.0
 @export var gravity: int = 100
 
-var left: bool = false
+var left: bool = true
 
 
 func _ready() -> void:
@@ -15,6 +15,7 @@ func _physics_process(delta: float) -> void:
 	var motion := Vector2(0, 0)
 	if (!is_on_floor()):
 		motion.y += gravity * delta
+
 	motion.x += (1.0 if left else -1.0) * speed * delta
 	move_and_collide(motion)
 	move_and_slide()
@@ -22,7 +23,6 @@ func _physics_process(delta: float) -> void:
 
 func _on_body_entered(body: Node) -> void:
 	if (body is TileMapLayer):
-		print("Colliding with bodies: ", body)
 		flip_direction()
 
 

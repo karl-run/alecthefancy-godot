@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=4 uid="uid://cyshprr7lxq4w"]
+[gd_scene load_steps=8 format=4 uid="uid://cyshprr7lxq4w"]
 
 [ext_resource type="PackedScene" uid="uid://c05dep5ngavhd" path="res://player/player.tscn" id="1_vnjtq"]
 [ext_resource type="PackedScene" uid="uid://6150lv7xluax" path="res://background/scrolling_bg.tscn" id="1_wp8nw"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bp6f2idv8th0f" path="res://camera/follow_cam.tscn" id="4_ckf8t"]
 [ext_resource type="PackedScene" uid="uid://mg10sl1kelte" path="res://mobs/flying_mob.tscn" id="4_jc27u"]
 [ext_resource type="PackedScene" uid="uid://cg7s8rm28fhyw" path="res://mobs/walking_mob.tscn" id="5_ph7h3"]
+[ext_resource type="PackedScene" uid="uid://by1qw35nkbm70" path="res://mobs/jumping_mob.tscn" id="6_ph7h3"]
 
 [node name="DevScene" type="Node"]
 
@@ -26,6 +27,12 @@ max_contacts_reported = 2
 
 [node name="WalkingMob" parent="DevMap" instance=ExtResource("5_ph7h3")]
 position = Vector2(721, 106)
+
+[node name="JumpingMob" parent="DevMap" instance=ExtResource("6_ph7h3")]
+position = Vector2(656, 113)
+
+[node name="JumpingMob2" parent="DevMap" instance=ExtResource("6_ph7h3")]
+position = Vector2(684, 424)
 
 [node name="FollowCam" parent="." node_paths=PackedStringArray("target") instance=ExtResource("4_ckf8t")]
 position = Vector2(0, 288)

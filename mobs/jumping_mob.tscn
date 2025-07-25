@@ -1,5 +1,6 @@
-[gd_scene load_steps=14 format=3 uid="uid://by1qw35nkbm70"]
+[gd_scene load_steps=16 format=3 uid="uid://by1qw35nkbm70"]
 
+[ext_resource type="Script" uid="uid://dk8mlb27ujvu7" path="res://mobs/jumping_mob.gd" id="1_21f3t"]
 [ext_resource type="Texture2D" uid="uid://5rn4erpl7mmw" path="res://assets/images/creatures.png" id="1_hl4ck"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_21f3t"]
@@ -88,12 +89,24 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_iey5h"]
 radius = 17.0
 
-[node name="JumpingMob" type="RigidBody2D"]
-collision_layer = 4
-gravity_scale = 0.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_21f3t"]
+size = Vector2(35, 35)
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="JumpingMob" type="CharacterBody2D"]
+collision_layer = 4
+script = ExtResource("1_21f3t")
+
+[node name="Animations" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_n8rrt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_iey5h")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-0.5, 0.5)
+shape = SubResource("RectangleShape2D_21f3t")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_body_entered"]
