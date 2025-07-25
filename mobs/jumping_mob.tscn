@@ -89,6 +89,8 @@ animations = [{
 radius = 17.0
 
 [node name="JumpingMob" type="RigidBody2D"]
+collision_layer = 4
+gravity_scale = 0.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_n8rrt")

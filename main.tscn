@@ -11,11 +11,11 @@
 position = Vector2(0, 288)
 
 [node name="Alec" parent="." instance=ExtResource("2_0xm2m")]
-position = Vector2(607, 204)
+position = Vector2(523, 429)
 
 [node name="FollowCam" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_lquwl")]
-position = Vector2(1, 288)
+position = Vector2(510, 288)
 target = NodePath("../Alec")
 
-[node name="AlecTileWorldTileMap" parent="." instance=ExtResource("3_1bvp3")]
+[node name="MainMap" parent="." instance=ExtResource("3_1bvp3")]
 position = Vector2(-5, 0)

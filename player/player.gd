@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 var run_speed: int  = 350
-var jump_speed: int = -1000
+var jump_speed: int = -2000
 var gravity: int    = 2500
 
 
@@ -37,5 +37,3 @@ func do_animations() -> void:
 	else:
 		if velocity.y < 0:
 			$Animations.play("jump")
-		else:
-			$Animations.play("fall")
