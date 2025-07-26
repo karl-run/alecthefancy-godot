@@ -3,15 +3,14 @@
 extends Node2D
 
 @export_tool_button("Clear map", "Callable") var clear_map_action = clear_map
-
 @export_tool_button("Load map", "Callable") var load_map_action = load_map
-
 @export_tool_button("Load mobs", "Callable") var load_mobs_action = load_mobs
+
 ## The target tile map where the cells will be set
 @export var tile_map: TileMapLayer
 
 var walking_mob: PackedScene = preload("res://mobs/walking_mob.tscn")
-var flying_mob: PackedScene  = preload("res://mobs/flying_mob.tscn")
+var flying_mob: PackedScene = preload("res://mobs/flying_mob.tscn")
 var jumping_mob: PackedScene = preload("res://mobs/jumping_mob.tscn")
 
 
@@ -30,7 +29,7 @@ func load_map() -> void:
         var line: String = lines[line_index]
         for char_index in len(line):
             var character := line[char_index]
-            var pos       := Vector2i(char_index, line_index)
+            var pos := Vector2i(char_index, line_index)
 
             # Tiles are between "A" and "Z"
             var charUnicode := character.unicode_at(0)
@@ -51,7 +50,7 @@ func load_mobs() -> void:
         var line: String = lines[line_index]
         for char_index in len(line):
             var character := line[char_index]
-            var pos       := Vector2i(char_index, line_index)
+            var pos := Vector2i(char_index, line_index)
 
             # Mobs are between "1" and "3"
             match character:
@@ -87,9 +86,9 @@ func spawn_mob(character: String, pos: Vector2i) -> void:
 
 
 func char_to_tile_coords(ch: String) -> Vector2i:
-    var index  := ch.unicode_at(0) - 65
-    var x: int =  index % 9
-    var y: int =  index / 9
+    var index := ch.unicode_at(0) - 65
+    var x: int = index % 9
+    var y: int = index / 9
 
     return Vector2i(x, y)
 
