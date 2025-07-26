@@ -23,9 +23,15 @@ target = NodePath("../Alec")
 
 [node name="MainMap" parent="." instance=ExtResource("3_1bvp3")]
 
-[node name="UI" type="CanvasLayer" parent="." node_paths=PackedStringArray("score_label")]
+[node name="UI" type="CanvasLayer" parent="." node_paths=PackedStringArray("distance_value", "time_value", "points_value")]
 script = ExtResource("5_7mycd")
-score_label = NodePath("ThemeRoot/Distance/Value")
+distance_value = NodePath("ThemeRoot/Distance/Value")
+time_value = NodePath("ThemeRoot/Timer/Value")
+points_value = NodePath("ThemeRoot/Points/Value")
+
+[node name="Timer" type="Timer" parent="UI"]
+wait_time = 0.1
+autostart = true
 
 [node name="ThemeRoot" type="Control" parent="UI"]
 layout_mode = 3
@@ -39,15 +45,15 @@ theme = ExtResource("5_lquwl")
 
 [node name="Distance" type="HSplitContainer" parent="UI/ThemeRoot"]
 layout_mode = 0
-offset_left = 19.0
+offset_left = 14.0
 offset_top = 14.0
-offset_right = 166.0
+offset_right = 161.0
 offset_bottom = 50.0
 
 [node name="Text" type="Label" parent="UI/ThemeRoot/Distance"]
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-text = "Distance:"
+text = "Distance"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -58,4 +64,47 @@ text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[connection signal="score_changed" from="Alec" to="UI" method="_on_alec_score_changed"]
+[node name="Points" type="HSplitContainer" parent="UI/ThemeRoot"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -54.5
+offset_top = 14.0
+offset_right = 54.5
+offset_bottom = 54.0
+grow_horizontal = 2
+
+[node name="Text" type="Label" parent="UI/ThemeRoot/Points"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "Points"
+
+[node name="Value" type="Label" parent="UI/ThemeRoot/Points"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "0"
+
+[node name="Timer" type="HSplitContainer" parent="UI/ThemeRoot"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -194.0
+offset_top = 14.0
+offset_right = -14.0
+offset_bottom = 54.0
+grow_horizontal = 0
+
+[node name="Text" type="Label" parent="UI/ThemeRoot/Timer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "Time"
+
+[node name="Value" type="Label" parent="UI/ThemeRoot/Timer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "00:00:00"
+
+[connection signal="distance_changed" from="Alec" to="UI" method="_on_alec_distance_changed"]
+[connection signal="timeout" from="UI/Timer" to="UI" method="_on_timer_timeout"]

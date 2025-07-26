@@ -4,7 +4,7 @@ extends CharacterBody2D
 @export var map: WorldMap
 
 # Player events
-signal score_changed
+signal distance_changed(distance: int)
 signal player_died
 # Player configuration
 const run_speed: int  = 350
@@ -32,8 +32,8 @@ func get_input():
         velocity.x -= run_speed
 
 func _process(delta: float) -> void:
-    var score: int = map.tile_map.local_to_map(position).x
-    score_changed.emit(score - 15)
+    var distance: int = map.tile_map.local_to_map(position).x
+    distance_changed.emit(distance - 15)
 
 func _physics_process(delta) -> void:
     if not is_alive:
