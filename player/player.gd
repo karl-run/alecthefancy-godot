@@ -1,10 +1,16 @@
 extends CharacterBody2D
 
-signal player_died
-@export var run_speed: int = 350
-@export var jump_speed: int = -1000
-@export var gravity: int = 2500
+# Player wiring
+@export var map: WorldMap
 
+# Player events
+signal score_changed
+signal player_died
+# Player configuration
+const run_speed: int  = 350
+const jump_speed: int = -1000
+const gravity: int    = 2500
+# Player state
 var is_alive: bool = true
 
 
@@ -25,6 +31,9 @@ func get_input():
     if left:
         velocity.x -= run_speed
 
+func _process(delta: float) -> void:
+    var score: int = map.tile_map.local_to_map(position).x
+    score_changed.emit(score - 15)
 
 func _physics_process(delta) -> void:
     if not is_alive:
