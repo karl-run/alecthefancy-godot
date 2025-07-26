@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dibr4o2dlqoyq"]
+[gd_scene load_steps=10 format=3 uid="uid://dibr4o2dlqoyq"]
 
 [ext_resource type="PackedScene" uid="uid://6150lv7xluax" path="res://background/scrolling_bg.tscn" id="1_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://c05dep5ngavhd" path="res://player/player.tscn" id="2_0xm2m"]
@@ -6,6 +6,26 @@
 [ext_resource type="PackedScene" uid="uid://bp6f2idv8th0f" path="res://camera/follow_cam.tscn" id="3_lquwl"]
 [ext_resource type="Script" uid="uid://58pyyvysxewh" path="res://ui.gd" id="5_7mycd"]
 [ext_resource type="Theme" uid="uid://c7q2wo1wwso1v" path="res://base_theme.tres" id="5_lquwl"]
+[ext_resource type="FontFile" uid="uid://dm40rrkx6yvc3" path="res://assets/fonts/OpenSans-Bold.ttf" id="7_272bh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7mycd"]
+bg_color = Color(1, 1, 1, 0.607843)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="LabelSettings" id="LabelSettings_5vw27"]
+font = ExtResource("7_272bh")
+font_size = 30
+font_color = Color(0, 0, 0, 1)
+shadow_size = 2
+shadow_color = Color(1, 1, 1, 1)
 
 [node name="Main" type="Node"]
 
@@ -106,5 +126,91 @@ layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 text = "00:00:00"
 
+[node name="DeathScreen" type="Control" parent="UI"]
+visible = false
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -195.0
+offset_top = -100.0
+offset_right = 195.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="UI/DeathScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7mycd")
+
+[node name="You died!" type="Label" parent="UI/DeathScreen"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -94.0
+offset_top = 14.0
+offset_right = 94.0
+offset_bottom = 72.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 42
+text = "You died!"
+
+[node name="ScoreContainer" type="HBoxContainer" parent="UI/DeathScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -65.0
+offset_top = -15.5
+offset_right = 65.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 5
+
+[node name="Text" type="Label" parent="UI/DeathScreen/ScoreContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 22
+text = "Your score:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Value" type="Label" parent="UI/DeathScreen/ScoreContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 22
+text = "0"
+label_settings = SubResource("LabelSettings_5vw27")
+horizontal_alignment = 1
+vertical_alignment = 3
+
+[node name="WhatToPress" type="Label" parent="UI/DeathScreen"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -38.0
+offset_bottom = -7.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 22
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="distance_changed" from="Alec" to="UI" method="_on_alec_distance_changed"]
+[connection signal="player_died" from="Alec" to="UI" method="_on_alec_player_died"]
 [connection signal="timeout" from="UI/Timer" to="UI" method="_on_timer_timeout"]

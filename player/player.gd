@@ -29,15 +29,13 @@ func handle_movement(delta: float) -> void:
     var run: bool = Input.is_action_pressed('run')
     var jump: bool = Input.is_action_just_pressed('jump')
 
-    #velocity.x -= 1
-
     if is_on_floor():
         if jump: # Normal jump
             velocity.y = jump_speed
 
         if left:
             velocity.x -= walk_acceleration
-            if abs(velocity.x) >= max_speed: velocity.x = -max_speed
+            if abs(velocity.x) >= max_speed: velocity.x = - max_speed
 
         if right:
             velocity.x += walk_acceleration
@@ -60,11 +58,6 @@ func handle_movement(delta: float) -> void:
         velocity.y = jump_speed
         velocity.x = - get_wall_normal().x * (jump_speed * 2)
 
-
-#    if right:
-#        velocity.x += max_speed
-#    if left:
-#        velocity.x -= max_speed
 
 func _process(delta: float) -> void:
     var distance: int = map.tile_map.local_to_map(position).x
@@ -103,6 +96,9 @@ func do_animations() -> void:
 
 
 func _on_body_area_body_entered(body: Node2D) -> void:
+    if not is_alive:
+        return
+
     if body is KillableMob and not body.alive:
         return
 
