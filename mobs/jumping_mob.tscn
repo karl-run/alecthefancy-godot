@@ -93,7 +93,7 @@ radius = 17.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_21f3t"]
 size = Vector2(32, 24)
 
-[node name="JumpingMob" type="CharacterBody2D"]
+[node name="JumpingMob" type="CharacterBody2D" groups=["mobs"]]
 collision_layer = 4
 script = ExtResource("1_21f3t")
 

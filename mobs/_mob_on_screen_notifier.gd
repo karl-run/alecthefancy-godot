@@ -1,13 +1,18 @@
 extends VisibleOnScreenNotifier2D
 
-@export var default_mode := Node.PROCESS_MODE_DISABLED
+
+@export var default_mode := ProcessMode.PROCESS_MODE_DISABLED
+
 
 func _ready() -> void:
-    process_mode = default_mode
+    get_parent().process_mode = default_mode
+
 
 func _on_screen_entered() -> void:
-    get_parent().process_mode = Node.PROCESS_MODE_INHERIT
+    print("Mob %s entered the screen" % get_parent().name)
+    get_parent().process_mode = ProcessMode.PROCESS_MODE_INHERIT
 
 
 func _on_screen_exited() -> void:
-    get_parent().process_mode = Node.PROCESS_MODE_DISABLED
+    print("Mob %s exited the screen" % get_parent().name)
+    get_parent().process_mode = ProcessMode.PROCESS_MODE_DISABLED

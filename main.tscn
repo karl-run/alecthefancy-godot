@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dibr4o2dlqoyq"]
+[gd_scene load_steps=11 format=3 uid="uid://dibr4o2dlqoyq"]
 
 [ext_resource type="PackedScene" uid="uid://6150lv7xluax" path="res://background/scrolling_bg.tscn" id="1_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://c05dep5ngavhd" path="res://player/player.tscn" id="2_0xm2m"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://58pyyvysxewh" path="res://ui.gd" id="5_7mycd"]
 [ext_resource type="Theme" uid="uid://c7q2wo1wwso1v" path="res://base_theme.tres" id="5_lquwl"]
 [ext_resource type="FontFile" uid="uid://dm40rrkx6yvc3" path="res://assets/fonts/OpenSans-Bold.ttf" id="7_272bh"]
+[ext_resource type="PackedScene" uid="uid://ciqmh7sd5di30" path="res://debug/debug.tscn" id="8_5vw27"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7mycd"]
 bg_color = Color(1, 1, 1, 0.607843)
@@ -210,6 +211,8 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 22
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Debug" parent="." instance=ExtResource("8_5vw27")]
 
 [connection signal="distance_changed" from="Alec" to="UI" method="_on_alec_distance_changed"]
 [connection signal="player_died" from="Alec" to="UI" method="_on_alec_player_died"]

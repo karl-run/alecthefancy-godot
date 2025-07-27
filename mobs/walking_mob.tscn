@@ -96,8 +96,7 @@ size = Vector2(34, 7)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vwape"]
 size = Vector2(28, 56)
 
-[node name="WalkingMob" type="CharacterBody2D"]
-process_mode = 4
+[node name="WalkingMob" type="CharacterBody2D" groups=["mobs"]]
 collision_layer = 4
 script = ExtResource("1_vss60")
 

@@ -1,4 +1,5 @@
 extends KillableMob
+class_name JumpingMob
 
 @export var run_speed: int = 99
 @export var jump_speed: int = -500
@@ -31,11 +32,3 @@ func _physics_process(delta: float) -> void:
         velocity.x -= run_speed
 
     move_and_slide()
-
-
-func _on_mob_on_screen_notifier_screen_entered() -> void:
-    process_mode = Node.PROCESS_MODE_INHERIT
-
-
-func _on_mob_on_screen_notifier_screen_exited() -> void:
-    process_mode = Node.PROCESS_MODE_DISABLED

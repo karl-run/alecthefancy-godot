@@ -91,6 +91,7 @@ size = Vector2(52, 28)
 
 [node name="FlyingMob" type="CharacterBody2D" groups=["mobs"]]
 collision_layer = 4
+motion_mode = 1
 script = ExtResource("1_tx45a")
 
 [node name="Animations" type="AnimatedSprite2D" parent="."]

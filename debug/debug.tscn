@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://ciqmh7sd5di30"]
+
+[ext_resource type="Script" uid="uid://q0t73dfpo4j2" path="res://debug/debug.gd" id="1_ikwhb"]
+
+[node name="Debug" type="Node2D"]
+script = ExtResource("1_ikwhb")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+offset_right = 40.0
+grow_vertical = 0
+text = "Active mobs: 0"
