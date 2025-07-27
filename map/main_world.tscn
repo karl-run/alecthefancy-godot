@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://by1qw35nkbm70" path="res://mobs/jumping_mob.tscn" id="7_tx4f3"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_20bkd"]
-resource_name = "mobs"
 scenes/1/scene = ExtResource("3_8nlok")
 scenes/2/scene = ExtResource("7_tx4f3")
 scenes/3/scene = ExtResource("5_11u2b")
@@ -17,9 +16,10 @@ scenes/3/scene = ExtResource("5_11u2b")
 tile_size = Vector2i(32, 32)
 sources/0 = SubResource("TileSetScenesCollectionSource_20bkd")
 
-[node name="MainWorld" type="Node2D" node_paths=PackedStringArray("tile_map")]
+[node name="MainWorld" type="Node2D" node_paths=PackedStringArray("tile_map", "mobs_map")]
 script = ExtResource("1_20bkd")
 tile_map = NodePath("ImportableMap/WorldTileMapLayer")
+mobs_map = NodePath("ImportableMap/Mobs")
 
 [node name="ImportableMap" type="Node2D" parent="." node_paths=PackedStringArray("tile_map", "mobs_map")]
 script = ExtResource("2_7eqce")

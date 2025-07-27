@@ -8,7 +8,7 @@ func _is_processing_node(node: Node) -> bool:
 
 func _process(_delta: float) -> void:
     var map: WorldMap = get_parent().get_node("MainMap")
-    var active_mobs := map.tile_map.get_parent().get_children().filter(_is_mob_node).filter(_is_processing_node)
+    var active_mobs := map.mobs_map.get_children().filter(_is_mob_node).filter(_is_processing_node)
     var flying_mobs = active_mobs.filter(func(mob: Node): return mob is FlyingMob)
     var jumping_mobs = active_mobs.filter(func(mob: Node): return mob is JumpingMob)
     var walking_mobs = active_mobs.filter(func(mob: Node): return mob is WalkingMob)
