@@ -57,28 +57,57 @@ func _on_jump_area_entered(area: Area2D) -> void:
 
 
 func _handle_air_movement() -> void:
-    pass
-
-
-func _handle_floor_movement() -> void:
-    if PlayerInputs.jump(): # Normal jump
-        velocity.y = jump_speed
+    var acceleration: int = run_acceleration if PlayerInputs.run() else walk_acceleration
+    var top_speed := max_speed if PlayerInputs.run() else max_walk_speed
 
     if PlayerInputs.left():
-        velocity.x -= walk_acceleration
-        if abs(velocity.x) >= max_speed: velocity.x = - max_speed
+        velocity.x -= acceleration
+        if abs(velocity.x) >= top_speed: velocity.x = - top_speed
 
     if PlayerInputs.right():
-        velocity.x += walk_acceleration
-        if abs(velocity.x) >= max_speed: velocity.x = max_speed
+        velocity.x += acceleration
+        if abs(velocity.x) >= top_speed: velocity.x = top_speed
 
     if not PlayerInputs.left() and not PlayerInputs.right(): # Decelerate
         if (velocity.x > 0):
+            # Normal deceleration even if running
+            velocity.x -= walk_deceleration * 0.5
+            if velocity.x < 0: velocity.x = 0
+        elif (velocity.x < 0):
+            # Normal deceleration even if running
+            velocity.x += walk_deceleration * 0.5
+            if velocity.x > 0: velocity.x = 0
+    
+
+func _handle_floor_movement() -> void:
+    if PlayerInputs.jump(): # Normal jump
+        # Give max jump when near max speed
+        if abs(velocity.x) * 1.1 > max_speed:
+            velocity.y = jump_speed
+        else:
+            velocity.y = jump_speed * 0.9
+
+    var acceleration: int = run_acceleration if PlayerInputs.run() else walk_acceleration
+    var top_speed := max_speed if PlayerInputs.run() else max_walk_speed
+
+    if PlayerInputs.left():
+        velocity.x -= acceleration
+        if abs(velocity.x) >= top_speed: velocity.x = - top_speed
+
+    if PlayerInputs.right():
+        velocity.x += acceleration
+        if abs(velocity.x) >= top_speed: velocity.x = top_speed
+
+    if not PlayerInputs.left() and not PlayerInputs.right(): # Decelerate
+        if (velocity.x > 0):
+            # Normal deceleration even if running
             velocity.x -= walk_deceleration
             if velocity.x < 0: velocity.x = 0
         elif (velocity.x < 0):
+            # Normal deceleration even if running
             velocity.x += walk_deceleration
             if velocity.x > 0: velocity.x = 0
+    
     
     
 func _handle_movement() -> void:

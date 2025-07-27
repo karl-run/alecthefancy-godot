@@ -1,5 +1,6 @@
-[gd_scene load_steps=9 format=4 uid="uid://cyshprr7lxq4w"]
+[gd_scene load_steps=10 format=4 uid="uid://cyshprr7lxq4w"]
 
+[ext_resource type="Script" uid="uid://c5c1wsb7qy5uf" path="res://main_dev.gd" id="1_7vt3u"]
 [ext_resource type="PackedScene" uid="uid://c05dep5ngavhd" path="res://player/player.tscn" id="1_vnjtq"]
 [ext_resource type="PackedScene" uid="uid://6150lv7xluax" path="res://background/scrolling_bg.tscn" id="1_wp8nw"]
 [ext_resource type="TileSet" uid="uid://b81bulycrgaii" path="res://map/world_tile_map.tres" id="2_og48h"]
@@ -10,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://by1qw35nkbm70" path="res://mobs/jumping_mob.tscn" id="6_ph7h3"]
 
 [node name="DevScene" type="Node"]
+script = ExtResource("1_7vt3u")
 
 [node name="ScrollingBg" parent="." instance=ExtResource("1_wp8nw")]
 position = Vector2(2, 288)
