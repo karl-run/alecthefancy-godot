@@ -1,7 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://cg7s8rm28fhyw"]
+[gd_scene load_steps=18 format=3 uid="uid://cg7s8rm28fhyw"]
 
 [ext_resource type="Texture2D" uid="uid://5rn4erpl7mmw" path="res://assets/images/creatures.png" id="1_ubogi"]
 [ext_resource type="Script" uid="uid://c41iscujn7ejc" path="res://mobs/walking_mob.gd" id="1_vss60"]
+[ext_resource type="PackedScene" uid="uid://d0qprde3uybtx" path="res://mobs/_mob_on_screen_notifier.tscn" id="3_vwape"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vss60"]
 atlas = ExtResource("1_ubogi")
@@ -122,7 +123,4 @@ shape = SubResource("RectangleShape2D_vss60")
 position = Vector2(0, 3)
 shape = SubResource("RectangleShape2D_vwape")
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-rect = Rect2(-100, -100, 200, 200)
-
-[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[node name="MobOnScreenNotifier" parent="." instance=ExtResource("3_vwape")]

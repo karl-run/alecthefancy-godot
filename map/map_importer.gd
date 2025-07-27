@@ -74,12 +74,15 @@ func spawn_mob(character: String, pos: Vector2i) -> void:
             mob = walking_mob.instantiate()
             mob.position = pos * 32
             mob.position.y += 32
+            mob.name = "WalkingMob_%s_%s" % [pos.x, pos.y]
         "2":
             mob = flying_mob.instantiate()
             mob.position = pos * 32
+            mob.name = "FlyingMob_%s_%s" % [pos.x, pos.y]
         "3":
             mob = jumping_mob.instantiate()
             mob.position = pos * 32
+            mob.name = "JumpingMob_%s_%s" % [pos.x, pos.y]
 
     add_child(mob, true)
     mob.owner = get_parent()

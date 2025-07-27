@@ -34,8 +34,10 @@ func kill() -> void:
 
 
 func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
+    print("Flying mob %s entered the screen" % name)
     process_mode = Node.PROCESS_MODE_INHERIT
 
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+    print("Flying mob %s exited the screen" % name)
     process_mode = Node.PROCESS_MODE_DISABLED

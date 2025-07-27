@@ -30,9 +30,9 @@ func _physics_process(delta: float) -> void:
     move_and_slide()
 
 
-func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
+func _on_mob_on_screen_notifier_screen_entered() -> void:
     process_mode = Node.PROCESS_MODE_INHERIT
 
 
-func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+func _on_mob_on_screen_notifier_screen_exited() -> void:
     process_mode = Node.PROCESS_MODE_DISABLED

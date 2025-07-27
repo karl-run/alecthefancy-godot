@@ -1,7 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://by1qw35nkbm70"]
+[gd_scene load_steps=17 format=3 uid="uid://by1qw35nkbm70"]
 
 [ext_resource type="Script" uid="uid://dk8mlb27ujvu7" path="res://mobs/jumping_mob.gd" id="1_21f3t"]
 [ext_resource type="Texture2D" uid="uid://5rn4erpl7mmw" path="res://assets/images/creatures.png" id="1_hl4ck"]
+[ext_resource type="PackedScene" uid="uid://d0qprde3uybtx" path="res://mobs/_mob_on_screen_notifier.tscn" id="3_gnklt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_21f3t"]
 atlas = ExtResource("1_hl4ck")
@@ -108,8 +109,4 @@ shape = SubResource("CircleShape2D_iey5h")
 position = Vector2(0, -3)
 shape = SubResource("RectangleShape2D_21f3t")
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-rect = Rect2(-100, -100, 200, 200)
-
-[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
-[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[node name="MobOnScreenNotifier" parent="." instance=ExtResource("3_gnklt")]

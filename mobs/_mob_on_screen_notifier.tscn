@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://d0qprde3uybtx"]
+
+[ext_resource type="Script" uid="uid://bjc5tfh13f1kb" path="res://mobs/_mob_on_screen_notifier.gd" id="1_74s34"]
+
+[node name="MobOnScreenNotifier" type="VisibleOnScreenNotifier2D"]
+rect = Rect2(-400, -100, 800, 200)
+script = ExtResource("1_74s34")
+
+[connection signal="screen_entered" from="." to="." method="_on_screen_entered"]
+[connection signal="screen_exited" from="." to="." method="_on_screen_exited"]
