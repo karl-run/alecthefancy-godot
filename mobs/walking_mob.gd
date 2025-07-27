@@ -28,3 +28,11 @@ func _physics_process(delta: float) -> void:
         velocity.x -= run_speed
 
     move_and_slide()
+
+
+func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
+    process_mode = Node.PROCESS_MODE_INHERIT
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+    process_mode = Node.PROCESS_MODE_DISABLED

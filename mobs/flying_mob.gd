@@ -31,3 +31,11 @@ func _physics_process(delta: float) -> void:
 func kill() -> void:
     super.kill()
     $Animations.flip_h = !$Animations.flip_h
+
+
+func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
+    process_mode = Node.PROCESS_MODE_INHERIT
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+    process_mode = Node.PROCESS_MODE_DISABLED

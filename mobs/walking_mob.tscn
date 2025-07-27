@@ -96,6 +96,7 @@ size = Vector2(34, 7)
 size = Vector2(28, 56)
 
 [node name="WalkingMob" type="CharacterBody2D"]
+process_mode = 4
 collision_layer = 4
 script = ExtResource("1_vss60")
 
@@ -120,3 +121,9 @@ shape = SubResource("RectangleShape2D_vss60")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeathArea"]
 position = Vector2(0, 3)
 shape = SubResource("RectangleShape2D_vwape")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+rect = Rect2(-100, -10, 200, 20)
+
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
