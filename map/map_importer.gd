@@ -5,22 +5,21 @@ extends Node2D
 @export_tool_button("Clear map", "Callable") var clear_map_action = clear_map
 @export_tool_button("Load map", "Callable") var load_map_action = load_map
 @export_tool_button("Load mobs", "Callable") var load_mobs_action = load_mobs
+@export_tool_button("Debug Mobs", "Callable") var debug_mobs_action = debug_mobs
 
 ## The target tile map where the cells will be set
 @export var tile_map: TileMapLayer
-
-var walking_mob: PackedScene = preload("res://mobs/walking_mob.tscn")
-var flying_mob: PackedScene = preload("res://mobs/flying_mob.tscn")
-var jumping_mob: PackedScene = preload("res://mobs/jumping_mob.tscn")
-
+@export var mobs_map: TileMapLayer
 
 func clear_map() -> void:
     tile_map.clear()
+    mobs_map.clear()
 
-    for child in get_children():
-        if child is KillableMob:
-            child.queue_free()
 
+func debug_mobs() -> void:
+    #for cell in mobs_map.get_used_cells():
+    #    print(mobs_map.get_cell_atlas_coords(0, cell))
+    pass
 
 func load_map() -> void:
     var lines := get_map_lines()
@@ -68,24 +67,13 @@ func spawn_mob(character: String, pos: Vector2i) -> void:
         print("Invalid character for mob spawn: " + character)
         return
 
-    var mob: Node2D
     match character:
         "1":
-            mob = walking_mob.instantiate()
-            mob.position = pos * 32
-            mob.position.y += 32
-            mob.name = "WalkingMob_%s_%s" % [pos.x, pos.y]
+            mobs_map.set_cell(pos, 0, Vector2i.ZERO, 3)
         "2":
-            mob = flying_mob.instantiate()
-            mob.position = pos * 32
-            mob.name = "FlyingMob_%s_%s" % [pos.x, pos.y]
+            mobs_map.set_cell(pos, 0, Vector2i.ZERO, 1)
         "3":
-            mob = jumping_mob.instantiate()
-            mob.position = pos * 32
-            mob.name = "JumpingMob_%s_%s" % [pos.x, pos.y]
-
-    add_child(mob, true)
-    mob.owner = get_parent()
+            mobs_map.set_cell(pos, 0, Vector2i.ZERO, 2)
 
 
 func char_to_tile_coords(ch: String) -> Vector2i:
